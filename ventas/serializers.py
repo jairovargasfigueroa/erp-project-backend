@@ -10,6 +10,7 @@ class DetalleVentaSerializer(serializers.Serializer):
     cantidad = serializers.IntegerField()
 
 class VentaSerializer(serializers.ModelSerializer):
+    fecha = serializers.DateTimeField(format="%d/%m/%Y %H:%M:%S", read_only=True)  # Formato día/mes/año hora:minuto:segundo
     cliente_nombre = serializers.CharField(source='cliente.nombre',read_only=True) 
     cliente_id = serializers.IntegerField(required=False)
     detalles = DetalleVentaSerializer(many=True)

@@ -11,6 +11,7 @@ class DetalleCompraSerializer(serializers.Serializer):
     cantidad = serializers.IntegerField()
     
 class CompraSerializer(serializers.ModelSerializer):
+    fecha = serializers.DateTimeField(format="%d/%m/%Y %H:%M:%S", read_only=True)  # Formato día/mes/año hora:minuto:segundo
     proveedor_id = serializers.IntegerField(required=False)
     proveedor_nombre = serializers.CharField(source='proveedor.nombre',read_only=True)
     detalles = DetalleCompraSerializer(many=True)    

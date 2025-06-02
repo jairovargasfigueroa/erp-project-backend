@@ -8,10 +8,10 @@ from .models import Producto
 
 class ProductoSerializer(serializers.ModelSerializer):
     categoria = serializers.PrimaryKeyRelatedField(queryset=Categoria.objects.all())
-    # categoria_info = CategoriaSerializer(source='categoria', read_only=True)
+    categoria_nombre = serializers.CharField(source='categoria.nombre', read_only=True)
     almacen = serializers.PrimaryKeyRelatedField(queryset=Almacen.objects.all())
-    # almacen_info = AlmacenSerializer(source='almacen', read_only=True)
+    almacen_nombre = serializers.CharField(source='almacen.nombre', read_only=True)
 
     class Meta:
         model = Producto
-        fields = ['id', 'nombre', 'descripcion', 'precio', 'stock', 'categoria',  'almacen', ]
+        fields = ['id', 'nombre', 'descripcion', 'precio', 'stock', 'categoria','categoria_nombre','almacen' ,'almacen_nombre', ]
